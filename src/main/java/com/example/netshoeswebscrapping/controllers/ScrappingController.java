@@ -6,6 +6,7 @@ import com.example.netshoeswebscrapping.exceptions.InvalidUrlException;
 import com.example.netshoeswebscrapping.services.ScrappingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,8 @@ public class ScrappingController {
     @Autowired
     ScrappingService scrappingService;
 
+
+    @CrossOrigin(origins = "*")
     @GetMapping("/get-product")
     ResponseEntity<Product> getProduct(@RequestParam("url") String url) throws IOException, InvalidUrlException {
         Product product = scrappingService.fetchProduct(url);
